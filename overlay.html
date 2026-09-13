@@ -872,7 +872,7 @@ let score = 0;
 let best = 0;
 let combo = 0;
 let lastBreakTime = 0;
-try { best = Number(localStorage.getItem('whiporpet.best')) || 0; } catch {}
+try { best = Number(localStorage.getItem('whipet.best')) || 0; } catch {}
 
 function shelfSpots() {
   const spots = [];
@@ -952,7 +952,7 @@ function shatter(b, vx, vy) {
   score += 10 * combo;
   if (score > best) {
     best = score;
-    try { localStorage.setItem('whiporpet.best', String(best)); } catch {}
+    try { localStorage.setItem('whipet.best', String(best)); } catch {}
   }
   playCrackSound();
 }

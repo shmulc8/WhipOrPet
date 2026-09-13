@@ -1,10 +1,11 @@
 {
-  "name": "whip-or-pet",
-  "version": "1.3.0",
-  "description": "Whip Claude into shape, or pat it on the shoulder",
+  "name": "whipet",
+  "version": "1.4.0",
+  "description": "Whip your coding agent into shape, or pat it on the shoulder",
   "license": "MIT",
   "main": "main.js",
   "bin": {
+    "whipet": "bin/whipet.js",
     "whiporpet": "bin/whiporpet.js",
     "openwhip": "bin/openwhip.js"
   },
@@ -23,24 +24,27 @@
     "cli",
     "claude",
     "claude-code",
+    "codex",
+    "coding-agent",
     "whip",
     "pat",
     "fun"
   ],
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/shmulc8/WhipOrPet.git"
+    "url": "git+https://github.com/shmulc8/Whipet.git"
   },
   "bugs": {
-    "url": "https://github.com/shmulc8/WhipOrPet/issues"
+    "url": "https://github.com/shmulc8/Whipet/issues"
   },
-  "homepage": "https://github.com/shmulc8/WhipOrPet#readme",
+  "homepage": "https://github.com/shmulc8/Whipet#readme",
   "files": [
     "main.js",
     "preload.js",
     "overlay.html",
     "sounds",
     "icon",
+    "bin/whipet.js",
     "bin/whiporpet.js",
     "bin/openwhip.js",
     "scripts/mac-app.js",

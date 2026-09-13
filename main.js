@@ -79,7 +79,7 @@ function createTrayIconFallback() {
       return img;
     }
   }
-  console.warn('whiporpet: icon/Template.png missing or invalid');
+  console.warn('whipet: icon/Template.png missing or invalid');
   return nativeImage.createEmpty();
 }
 
@@ -113,7 +113,7 @@ async function getTrayIcon() {
       } catch (e) {
         console.warn('AppIcon.icns Quick Look thumbnail failed:', e?.message || e);
       }
-      const tmp = path.join(os.tmpdir(), 'whiporpet-tray.icns');
+      const tmp = path.join(os.tmpdir(), 'whipet-tray.icns');
       try {
         fs.copyFileSync(file, tmp);
         const t = await tryIcnsTrayImage(tmp);
@@ -262,7 +262,7 @@ function typeText(text) {
     const escaped = text.replace(/\\/g, '\\\\').replace(/"/g, '\\"');
     const script = ['tell application "System Events"', `  keystroke "${escaped}"`, '  delay 0.25', '  key code 36', '  delay 0.15', 'end tell'].join('\n');
     execFile('osascript', ['-e', script], err => {
-      if (err) console.warn('mac typing failed (enable Accessibility for WhipOrPet):', err.message);
+      if (err) console.warn('mac typing failed (enable Accessibility for Whipet AI):', err.message);
     });
   } else if (process.platform === 'linux') {
     runXdotoolChain([
@@ -426,7 +426,7 @@ app.whenReady().then(async () => {
   readyAt = Date.now();
   const trayIcon = await getTrayIcon();
   tray = new Tray(process.platform === 'darwin' ? trayIcon.resize({ width: 18, height: 18 }) : trayIcon);
-  tray.setToolTip(`WhipOrPet - click or ${TOGGLE_SHORTCUT}; scroll on it to switch whip/pat`);
+  tray.setToolTip(`Whipet AI - click or ${TOGGLE_SHORTCUT}; scroll on it to switch whip/pat`);
   const modeMenu = [
     { label: `Whip (${TOGGLE_SHORTCUT})`, click: () => toggleOverlay(true, 'whip') },
     { label: `Pat on the shoulder (${PAT_SHORTCUT})`, click: () => toggleOverlay(true, 'pat') },
@@ -436,13 +436,13 @@ app.whenReady().then(async () => {
   tray.on('right-click', () => tray.popUpContextMenu(trayMenu));
   tray.on('click', () => toggleOverlay(true));
   if (!globalShortcut.register(TOGGLE_SHORTCUT, () => toggleOverlay(false, 'whip'))) {
-    console.warn(`whiporpet: could not register ${TOGGLE_SHORTCUT}`);
+    console.warn(`whipet: could not register ${TOGGLE_SHORTCUT}`);
   }
   if (!globalShortcut.register(PAT_SHORTCUT, () => toggleOverlay(false, 'pat'))) {
-    console.warn(`whiporpet: could not register ${PAT_SHORTCUT}`);
+    console.warn(`whipet: could not register ${PAT_SHORTCUT}`);
   }
 
-  // Honor `whiporpet pat` / `whiporpet whip` on the very first (cold) launch too,
+  // Honor `whipet pat` / `whipet whip` on the very first (cold) launch too,
   // not just on a second instance. Plain launch stays tray-only.
   const initialKind = process.argv.includes('pat') ? 'pat'
     : process.argv.includes('whip') ? 'whip'
